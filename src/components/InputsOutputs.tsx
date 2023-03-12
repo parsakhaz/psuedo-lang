@@ -218,7 +218,6 @@ const InputsOutputs = () => {
           </div>
         </div>
       )}
-
       {/* Div with buttons to select output language, translate & swap */}
       <div className="flex justify-center pt-2">
         {/* Dropdown for Language Selection */}
@@ -227,8 +226,10 @@ const InputsOutputs = () => {
             <option disabled selected>
               Select the language to translate to
             </option>
-            {languagesArray.map((language: string) => (
-              <option value={language}>{language}</option>
+            {languagesArray.map((language: string, index: number) => (
+              <option key={index} value={language}>
+                {language}
+              </option>
             ))}
           </select>
         </div>
@@ -245,7 +246,6 @@ const InputsOutputs = () => {
           </button>
         </div>
       </div>
-
       {/* Input for User Answer */}
       <div className="px-5 flex justify-center py-1 mb-5">
         <textarea
@@ -255,12 +255,10 @@ const InputsOutputs = () => {
           // disabled={isQuestionInputDisabled}
           id="user-input"></textarea>
       </div>
-
       {/* Loading animation */}
       <div className="flex justify-center">
         <BeatLoader className="pb-5" color={'white'} loading={isLoadingTranslation} size={10} aria-label="Loading Spinner" data-testid="loader" />
       </div>
-
       {/* Output for User Answer */}
       <div className="px-5 flex justify-center py-1 mb-5">
         <textarea
@@ -273,8 +271,8 @@ const InputsOutputs = () => {
         </textarea>
       </div>
       For debugging purposes (IGNORE)
-      <br/>
-      <br/>
+      <br />
+      <br />
       {previouslyTranslatedText && 'Previously Translated Text: ' + previouslyTranslatedText}
       <br />
       <br />
