@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+DAISYUI OVERRIDE EXAMPLE
+.btn {
+  @apply rounded-full;
+} */
+
+.selectFields {
+  display: flex;
+  justify-content: center;
+}
