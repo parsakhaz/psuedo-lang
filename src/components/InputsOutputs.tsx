@@ -3,6 +3,7 @@ import { BeatLoader } from 'react-spinners';
 
 const InputsOutputs = () => {
   const languagesArray = [
+    'English',
     'Albanian',
     'Arabic',
     'Armenian',
@@ -117,9 +118,9 @@ const InputsOutputs = () => {
   }
 
   useEffect(() => {
-    console.log(translatorLanguage);
-    console.log(userInput);
-  });
+    // console.log(translatorLanguage);
+    // console.log(userInput);
+  }), [];
 
   const handleLanguageChange = async (event: ChangeEvent<HTMLSelectElement>) => {
     setTranslatorLanguage(event.target.value);
@@ -130,12 +131,12 @@ const InputsOutputs = () => {
     setUserInput(event.target.value);
     if (hasWhiteSpace(event.target.value) || event.target.value == null) {
       setIsGenerateTranslationButtonDisabled(true);
-      console.log(event.target.value + 'entered disable feedback button loop');
+      // console.log(event.target.value + 'entered disable feedback button loop');
     } else {
       setIsGenerateTranslationButtonDisabled(false);
-      console.log(event.target.value + 'entered enable feedback button loop');
+      // console.log(event.target.value + 'entered enable feedback button loop');
       setTextToTranslate(event.target.value);
-      console.log('text to be translated', event.target.value);
+      // console.log('text to be translated', event.target.value);
     }
   };
 
@@ -178,6 +179,62 @@ const InputsOutputs = () => {
     const textOutput = document.getElementById('user-output') as HTMLTextAreaElement;
     textOutput.value = parsedData[1];
   };
+
+  const handlePhoneticizeBtn = async () => {
+    setIsLoadingTranslation(true);
+    setPreviouslyTranslatedText(textToTranslate);
+    const response = await fetch('/api/generatePhoneticize', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ language: translatorLanguage, textToTranslate: textToTranslate }),
+    });
+    const data = await response.text();
+    console.log('data returned from gpt api:', data);
+
+    let parsedData = await data.replace(/\[|\]/g, '').split('~');
+    console.log(parsedData);
+    console.log(parsedData[0]);
+    console.log(parsedData[1]);
+    setGuessedTranslationLanguage(parsedData[0]);
+    setTranslatedText(parsedData[1]);
+    setIsLoadingTranslation(false);
+
+    // set text output box to have translated text & enable swap btn
+    setIsSwapBtnDisabled(false);
+    const textOutput = document.getElementById('user-output') as HTMLTextAreaElement;
+    textOutput.value = parsedData[1];
+
+  }
+
+  const handleTransliterationBtn = async () => {
+    setIsLoadingTranslation(true);
+    setPreviouslyTranslatedText(textToTranslate);
+    const response = await fetch('/api/generateTransliteration', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ language: translatorLanguage, textToTranslate: textToTranslate }),
+    });
+    const data = await response.text();
+    console.log('data returned from gpt api:', data);
+
+    let parsedData = await data.replace(/\[|\]/g, '').split('~');
+    console.log(parsedData);
+    console.log(parsedData[0]);
+    console.log(parsedData[1]);
+    setGuessedTranslationLanguage(parsedData[0]);
+    setTranslatedText(parsedData[1]);
+    setIsLoadingTranslation(false);
+
+    // set text output box to have translated text & enable swap btn
+    setIsSwapBtnDisabled(false);
+    const textOutput = document.getElementById('user-output') as HTMLTextAreaElement;
+    textOutput.value = parsedData[1];
+
+  }
 
   const handleQuestionAlert = () => {
     setDisplayQuestionAlertFlag(false);
@@ -233,14 +290,28 @@ const InputsOutputs = () => {
             ))}
           </select>
         </div>
-        <div className="px-2">
+      
           {/* Button to translate input */}
+          <div className="px-2">
           <button disabled={isGenerateTranslationButtonDisabled} className="btn btn-success mb-5" id="generateAnswerBtn" onClick={handleQuestionBtn}>
             TRANSLATE
           </button>
         </div>
-        <div className="px-2">
+           {/* Button to  input */}
+           <div className="px-2">
+           <button disabled={isGenerateTranslationButtonDisabled} className="btn btn-success mb-5" id="generateAnswerBtn" onClick={handlePhoneticizeBtn}>
+           sound-out v1
+          </button>
+          </div>
+             {/* Button to  input */}
+             <div className="px-2">
+             <button disabled={isGenerateTranslationButtonDisabled} className="btn btn-success mb-5" id="generateAnswerBtn" onClick={handleTransliterationBtn}>
+             sound-out v2
+          </button>
+          </div>
+       
           {/* Button to swap input and output */}
+          <div className="px-2">
           <button disabled={isSwapBtnDisabled} className="btn btn-success mb-5" id="generateAnswerBtn" onClick={handleSwapBtn}>
             Swap
           </button>
@@ -262,7 +333,7 @@ const InputsOutputs = () => {
       {/* Output for User Answer */}
       <div className="px-5 flex justify-center py-1 mb-5">
         <textarea
-          placeholder="Translated text will appear here"
+          placeholder="Translated text will appear here if successful"
           className="textarea textarea-bordered textarea-lg w-full max-w-6xl overflow-hidden"
           onChange={handleOutputChange}
           // disabled={isQuestionInputDisabled}
@@ -270,7 +341,7 @@ const InputsOutputs = () => {
           {translatedText}
         </textarea>
       </div>
-      For debugging purposes (IGNORE)
+      {/* For debugging purposes (IGNORE)
       <br />
       <br />
       {previouslyTranslatedText && 'Previously Translated Text: ' + previouslyTranslatedText}
@@ -284,7 +355,7 @@ const InputsOutputs = () => {
       <br />
       {translatedText && 'Translated Text: ' + translatedText}
       <br />
-      <br />
+      <br /> */}
     </div>
   );
 };
