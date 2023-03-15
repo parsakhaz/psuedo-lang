@@ -263,7 +263,7 @@ const InputsOutputs = () => {
     <div className="max-w-lg sm:max-w-3xl mx-auto">
         <div className="px-5 mx-auto py-2 pb-4">
           {/* Alert/tutorial on usage  */}
-          <div className="px-8 py-8 alert bg-blue-100 text-black shadow-lg justify-center">
+          <div className="px-8 py-8 alert alert-success shadow-lg justify-center">
             <div>
               {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -284,7 +284,7 @@ const InputsOutputs = () => {
      <div className="max-w-lg sm:max-w-3xl mx-auto">
         <div className="px-5 mx-auto py-2">
           {/* Alert/tutorial on usage  */}
-          <div className="alert alert-success shadow-lg justify-center">
+          <div className="alert bg-blue-100 text-black  shadow-lg justify-center">
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -307,7 +307,7 @@ const InputsOutputs = () => {
     <div className="max-w-lg sm:max-w-3xl mx-auto">
         <div className="px-5 mx-auto py-2 pb-4">
           {/* Alert/tutorial on usage  */}
-          <div className="alert alert-success shadow-lg justify-center">
+          <div className="alert bg-blue-100 text-black shadow-lg justify-center">
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
