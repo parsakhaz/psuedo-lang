@@ -178,7 +178,7 @@ const InputsOutputs = () => {
     // set text output box to have translated text & enable swap btn
     setIsSwapBtnDisabled(false);
     const textOutput = document.getElementById('user-output') as HTMLTextAreaElement;
-    textOutput.value = parsedData[1];
+    textOutput.value = parsedData[1] ? parsedData[1] : "Failed to translate. The translator may have failed to auto-detect the input language if it is too short or unsupported. Please modify your input and try again.";
   };
 
   const handlePhoneticizeBtn = async () => {
@@ -205,8 +205,7 @@ const InputsOutputs = () => {
     // set text output box to have translated text & enable swap btn
     setIsSwapBtnDisabled(false);
     const textOutput = document.getElementById('user-output') as HTMLTextAreaElement;
-    textOutput.value = parsedData[1];
-
+    textOutput.value = parsedData[1] ? parsedData[1] : "Failed to phoneticize. Try transliterating instead. Still not working? Please check grammar and/or any typos and try again.";
   }
 
   const handleTransliterationBtn = async () => {
@@ -233,7 +232,8 @@ const InputsOutputs = () => {
     // set text output box to have translated text & enable swap btn
     setIsSwapBtnDisabled(false);
     const textOutput = document.getElementById('user-output') as HTMLTextAreaElement;
-    textOutput.value = parsedData[1];
+    console.log(parsedData);
+    textOutput.value = parsedData[1] ? parsedData[1] : "Failed to transliterate. Please check grammar and/or any typos and try again. Still not working? Reword your input into a different tense.";
 
   }
 
@@ -293,7 +293,7 @@ const InputsOutputs = () => {
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              <span className="text-xs sm:text-lg">Try phonetically sounding out the Persian phrase "سلام. چطوری" in to English! </span>
+              <span className="text-xs sm:text-lg">The phoneticize and transliterate features are a powerful way to learn to learn the English pronounciation of words in another language!</span>
               <div className="flex-none">
                 <button className="btn btn-sm btn-ghost" onClick={handleAlertTwo}>
                   <svg xmlns="http://www.w3.org/2000/svg" className="stroke-red-700 flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
@@ -343,13 +343,13 @@ const InputsOutputs = () => {
            {/* Button to  input */}
            <div className="px-2">
            <button disabled={isGenerateTranslationButtonDisabled} className="btn btn-success mb-5" id="generateAnswerBtn" onClick={handlePhoneticizeBtn}>
-           sound-out v1
+           phoneticize
           </button>
           </div>
              {/* Button to  input */}
              <div className="px-2">
              <button disabled={isGenerateTranslationButtonDisabled} className="btn btn-success mb-5" id="generateAnswerBtn" onClick={handleTransliterationBtn}>
-             sound-out v2
+             transliterate
           </button>
           </div>
     
