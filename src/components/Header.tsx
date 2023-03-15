@@ -34,7 +34,7 @@ export const Header = () => {
     <>
       <div className="flex justify-between px-5 py-8 max-w-6xl mx-auto">
         <div className=" py-5 text-xl flex justify-center">
-          PseudoLang
+          <strong>PseudoLang</strong>
         {/* <Image
           src={favicon}
           alt='logo'
