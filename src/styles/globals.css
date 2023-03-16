@@ -12,3 +12,20 @@ DAISYUI OVERRIDE EXAMPLE
   display: flex;
   justify-content: center;
 }
+
+
+/* 
+overflow-hidden: hides scrollbar disables scrolling inside text areas/inputs
+no-scrollbar: hide scrollbar visually, but still allow scrolling within elements normally 
+*/
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
