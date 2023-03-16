@@ -10,7 +10,7 @@ const InputsOutputs = () => {
   const [isLoadingTranslation, setIsLoadingTranslation] = useState<boolean>(false);
   const [isGenerateTranslationButtonDisabled, setIsGenerateTranslationButtonDisabled] = useState<boolean>(true);
   const [isSwapBtnDisabled, setIsSwapBtnDisabled] = useState<boolean>(true);
-  const [translatorLanguage, setTranslatorLanguage] = useState<string | undefined>('English');
+  const [translatorLanguage, setTranslatorLanguage] = useState<string>('English');
   const [textToTranslate, setTextToTranslate] = useState<string | undefined>();
   const [guessedTranslationLanguage, setGuessedTranslationLanguage] = useState<string | undefined>();
   const [translatedTextOutput, setTranslatedTextOutput] = useState<string | undefined>();
@@ -297,7 +297,7 @@ const InputsOutputs = () => {
             <div className="px-2 py-2">
               <select className="select select-bordered w-full max-w-xs" id="positionSelect" value={translatorLanguage} onChange={handleLanguageChangeDropdown}>
                 <option disabled selected>
-                  Languages
+                  Languages:
                 </option>
                 {languagesData.map((language: string, index: number) => (
                   <option key={index} value={language}>
@@ -343,7 +343,7 @@ const InputsOutputs = () => {
         </div>
 
         {/* Input for User Answer */}
-        <div className="px-5 flex justify-center py-1 mb-5">
+        <div className="px-2 flex justify-center py-3">
           <textarea
             placeholder="Enter text to translate here"
             className="textarea textarea-bordered textarea-sm md:textarea-lg w-full max-w-6xl no-scrollbar"
@@ -356,7 +356,7 @@ const InputsOutputs = () => {
           <BeatLoader className="pb-5" color={'green'} loading={isLoadingTranslation} size={10} aria-label="Loading Spinner" data-testid="loader" />
         </div>
         {/* Output for User Answer */}
-        <div className="px-5 flex justify-center sm:justify-start py-1 mb-5">
+        <div className="px-2 flex justify-center sm:justify-start py-3">
           <textarea
             placeholder="Translated text will appear here if successful"
             className="textarea textarea-bordered textarea-sm md:textarea-lg w-full max-w-6xl no-scrollbar"

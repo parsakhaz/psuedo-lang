@@ -1,4 +1,5 @@
 export const languages = [
+  'English',
   'Afrikaans',
   'Albanian',
   'Amharic',
@@ -24,7 +25,6 @@ export const languages = [
   'Danish',
   'Dari',
   'Dutch',
-  'English',
   'Esperanto',
   'Estonian',
   'Fijian',
