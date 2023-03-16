@@ -195,7 +195,7 @@ const InputsOutputs = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg> */}
               <span className="text-xs sm:text-lg">
-                <strong>Welcome to Pseudo-Lang</strong> - a functionality packed translator that can auto-detect <i>any language</i>, including <strong>pseudo</strong> <i>(fictional languages, languages that mimic a real language, etc)</i> ones, and can translate them into <strong>93</strong>{' '}
+                <strong>Welcome to Pseudo-Lang</strong> - a functionality packed translator that can auto-detect <i>any language</i>, including <strong>pseudo</strong> <i>(fictional languages, languages that mimic a real language, etc)</i> ones, and can translate them into <strong>100+</strong>{' '}
                 languages.
               </span>
               {/* <div className="flex-none">
@@ -348,12 +348,11 @@ const InputsOutputs = () => {
             placeholder="Enter text to translate here"
             className="textarea textarea-bordered textarea-sm md:textarea-lg w-full max-w-6xl no-scrollbar"
             onChange={handleInputChange}
-            // disabled={isQuestionInputDisabled}
             id="user-input"></textarea>
         </div>
         {/* Loading animation */}
         <div className="flex justify-center">
-          <BeatLoader className="pb-5" color={'green'} loading={isLoadingTranslation} size={10} aria-label="Loading Spinner" data-testid="loader" />
+          <BeatLoader className="py-2" color={'green'} loading={isLoadingTranslation} size={10} aria-label="Loading Spinner" data-testid="loader" />
         </div>
         {/* Output for User Answer */}
         <div className="px-2 flex justify-center sm:justify-start py-3">
@@ -361,7 +360,6 @@ const InputsOutputs = () => {
             placeholder="Translated text will appear here if successful"
             className="textarea textarea-bordered textarea-sm md:textarea-lg w-full max-w-6xl no-scrollbar"
             onChange={handleOutputChange}
-            // disabled={isQuestionInputDisabled}
             id="user-output">
             {translatedText}
           </textarea>
