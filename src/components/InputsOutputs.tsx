@@ -111,7 +111,7 @@ const InputsOutputs = () => {
   const handlePhoneticizeBtn = async () => {
     setIsLoadingTranslation(true);
     setPreviouslyTranslatedText(textToTranslate);
-    const response = await fetch('/api/generatePhoneticize', {
+    const response = await fetch('/api/DAN', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -133,6 +133,30 @@ const InputsOutputs = () => {
     setIsSwapBtnDisabled(false);
     const textOutput = document.getElementById('user-output') as HTMLTextAreaElement;
     textOutput.value = parsedData[1] ? parsedData[1] : 'Failed to phoneticize. Try transliterating instead. Still not working? Please check grammar and/or any typos and try again.';
+  };
+
+  const handleDAN = async () => {
+    setIsLoadingTranslation(true);
+    setPreviouslyTranslatedText(textToTranslate);
+    const response = await fetch('/api/DAN', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ textToTranslate: textToTranslate }),
+    });
+    const data = await response.text();
+    console.log('data returned from gpt api:', data);
+
+
+    // setGuessedTranslationLanguage(parsedData[0]);
+    setTranslatedText(data);
+    setIsLoadingTranslation(false);
+
+    // set text output box to have translated text & enable swap btn
+    setIsSwapBtnDisabled(false);
+    const textOutput = document.getElementById('user-output') as HTMLTextAreaElement;
+    textOutput.value = data ? data : 'error i guess idk try again';
   };
 
   const handleTransliterationBtn = async () => {
@@ -330,8 +354,8 @@ const InputsOutputs = () => {
         <div className="flex justify-center md:justify-start py-1">
           {/* Button to  input */}
           <div className="px-2">
-            <button disabled={isGenerateTranslationButtonDisabled} className="btn btn-success" id="generateAnswerBtn" onClick={handlePhoneticizeBtn}>
-              phoneticize
+            <button disabled={isGenerateTranslationButtonDisabled} className="btn btn-success" id="generateAnswerBtn" onClick={handleDAN}>
+              DAN
             </button>
           </div>
           {/* Button to  input */}
@@ -346,7 +370,7 @@ const InputsOutputs = () => {
         <div className="px-2 flex justify-center py-3">
           <textarea
             placeholder="Enter text to translate here"
-            className="textarea textarea-bordered textarea-sm md:textarea-lg w-full max-w-6xl no-scrollbar"
+            className="textarea textarea-bordered textarea-sm md:textarea-lg w-full max-w-6xl h-[300px]"
             onChange={handleInputChange}
             id="user-input"></textarea>
         </div>
@@ -355,10 +379,10 @@ const InputsOutputs = () => {
           <BeatLoader className="py-2" color={'green'} loading={isLoadingTranslation} size={10} aria-label="Loading Spinner" data-testid="loader" />
         </div>
         {/* Output for User Answer */}
-        <div className="px-2 flex justify-center sm:justify-start py-3">
+        <div className="px-2 flex justify-center py-3">
           <textarea
             placeholder="Translated text will appear here if successful"
-            className="textarea textarea-bordered textarea-sm md:textarea-lg w-full max-w-6xl no-scrollbar"
+            className="textarea textarea-bordered textarea-sm md:textarea-lg w-full max-w-6xl h-[1000px]"
             onChange={handleOutputChange}
             id="user-output">
             {translatedText}
