@@ -1,6 +1,6 @@
-##### Note: due to the nature of vercels free tier and serverless functions limitations, cloning and running this repo with `npm run dev` is the fastest way to get it functioning on your machine.
-
 # Welcome to Pseudo-Lang. 
+
+###### Currently hosted [here](https://pseudo-lang.vercel.app/) and open to public testing. If you face any problems, please open a GitHub issue.
 
 A first of its kind translator that harnesses the power of *LLMs* and *state of the art AI models* that have been made available by OpenAI to auto-detect and translate what was once untranslatable text into over *100 languages*.
 
