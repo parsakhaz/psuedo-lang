@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>PsuedoLang - Translate anything.</title>
-        <meta name="description" content="PsuedoLang - Translate, sound out (phoneticize), and transliterate real & psuedo languages like Elvish, Finglish, and more with NLP" />
+        <title>PseudoLang - Translate anything.</title>
+        <meta name="description" content="PseudoLang - Translate, sound out (phoneticize), and transliterate real & pseudo languages like Elvish, Finglish, and more with AI" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
